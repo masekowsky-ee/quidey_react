@@ -8,17 +8,9 @@ import mockData from './components/mockData'
 function App(){
   const { t, language, setLanguage } = useTranslation();
 
-  const [tasks, setTasks] = useState([
-    {
-      name: 'test-task',
-      due: '2026-10-26',
-      description: 'test-description',
-    },{
-      name: 'test-task1',
-      due: '2026-10-26',
-      description: '',
-    },
-  ]);
+  const [groups, setGroups] = useState(mockData.groups);
+
+  const [tasks, setTasks] = useState(mockData.tasks);
   console.log(tasks);
   return (
     <div>
@@ -27,7 +19,7 @@ function App(){
         <h1>{[t('app'), ' ', t('langPar')]}</h1>
         <Profile />
       </div>
-      <Home t={t} tasks={tasks} setTasks={setTasks} />
+      <Home t={t} tasks={tasks} setTasks={setTasks} groups={groups} setGroups={setGroups} />
       <button onClick={()=>{setLanguage(language === 'de' ? 'en' : 'de')}}>
         {language === 'de' ? 'EN' : 'DE'}
       </button>

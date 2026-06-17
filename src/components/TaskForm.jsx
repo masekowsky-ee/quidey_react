@@ -12,6 +12,7 @@ export default function TaskForm(props){
                 name: e.target[0].value,
                 due: e.target[1].value,
                 description: e.target[2].value,
+                groups: [],
             }
         ]);
         console.log('submitted: ' + e.target[0].value + ' ' + e.target[1].value + ' ' + e.target[2].value);

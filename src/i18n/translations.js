@@ -12,6 +12,9 @@ const translations = {
         taskName: 'Name',
         dueDate: 'Fälligkeitsdatum',
         taskDeleteBtn: 'Löschen',
+        assignGroup: 'Zu Gruppe hinzufügen',
+        all: 'Alle',
+        start: 'Loslegen',
     },
     en: {
         app: 'App',
@@ -26,6 +29,9 @@ const translations = {
         taskName: 'Name',
         dueDate: 'Due Date',
         taskDeleteBtn: 'Delete',
+        assignGroup: 'Assign to Group',
+        all: 'All',
+        start: 'Start',
     }
 }
 
