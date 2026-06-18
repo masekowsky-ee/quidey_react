@@ -7,7 +7,7 @@ const translations = {
         langPar: '(Deutsch)',
         taskContainer: 'Aufgaben',
         createTaskH2: 'Aufgabe erstellen',
-        createTaskBtn: 'Erstellen',
+        createBtn: 'Erstellen',
         description: 'Beschreibung',
         taskName: 'Name',
         dueDate: 'Fälligkeitsdatum',
@@ -16,6 +16,10 @@ const translations = {
         all: 'Alle',
         start: 'Loslegen',
         group: 'Task Gruppe',
+        prioritise: 'Priorisieren',
+        planner: 'Planer',
+        createGroupH2: 'Gruppe erstellen',
+        groupName: 'Name',
     },
     en: {
         app: 'App',
@@ -25,7 +29,7 @@ const translations = {
         langPar: '(English)',
         taskContainer: 'Tasks',
         createTaskH2: 'Create Task',
-        createTaskBtn: 'Create',
+        createBtn: 'Create',
         description: 'Description',
         taskName: 'Name',
         dueDate: 'Due Date',
@@ -34,6 +38,10 @@ const translations = {
         all: 'All',
         start: 'Start',
         group: 'Task group',
+        prioritise: 'Prioritise',
+        planner: 'Planner',
+        createGroupH2: 'Create Group',
+        groupName: 'Name',
     }
 }
 
