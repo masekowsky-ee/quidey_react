@@ -1,16 +1,16 @@
 import React, { useState, useTransition } from 'react'
 
 const StartSettingsContainer = (props) => {
-    const { t, groups } = props;
+    const { t, groups, setShowStartSettings } = props;
 
-    const handleStartSession = () => {
-
+    const handleStartSession = (e) => {
+        e.preventDefault();
 
         setShowStartSettings(false);
     }
 
     return (
-        <form>
+        <form onSubmit={(e)=>{handleStartSession(e)}}>
             <label for="groupInput">{t('group')}: </label>
             <select id='groups'>
                 <option>{t('all')}</option>
@@ -20,7 +20,7 @@ const StartSettingsContainer = (props) => {
                     </option>
                 ))}
             </select>
-            <button onClick={handleStartSession}>{t('start')}</button>
+            <button type="submit">{t('start')}</button>
         </form>
     );
 }
