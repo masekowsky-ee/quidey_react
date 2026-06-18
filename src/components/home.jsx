@@ -8,7 +8,7 @@ export default function Home(props){
     return (
         <div>
             <h2>{props.t('home')}</h2>
-            <TaskForm setTasks={props.setTasks} t={props.t} />
+            <TaskForm setTasks={props.setTasks} t={props.t} setGroups={props.setGroups} />
             <TaskContainer tasks={props.tasks} setTasks={props.setTasks} t={props.t} groups={props.groups} setGroups={props.setGroups} />
         </div>
     );

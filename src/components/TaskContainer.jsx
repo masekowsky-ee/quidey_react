@@ -2,24 +2,24 @@ import React, { useState } from 'react'
 import StartSettingsContainer from './StartSettingsContainer';
 
 export default function TaskContainer(props){
-    console.log(props);
     const {tasks, setTasks, t, groups, setGroups} = props;
 
     const [assignGroups, setAssignGroups] = useState(false);
-    const [groupToDisplay, setGroupToDisplay] = useState(tasks);
+    const [groupToDisplayName, setGroupToDisplayName] = useState('all');
     const [taskToAssign, setTaskToAssign] = useState(null);
-
     const [taskToEdit, setTaskToEdit] = useState(null);
     const [taskPropToEdit, setTaskPropToEdit] = useState(null);
-
     const [showStartSettings, setShowStartSettings] = useState(false);
 
-    const handleTaskDelete = (task) => {
-        setTasks((prevTasks)=>{
-            return prevTasks.filter((t)=>
-                t['name'] !== task['name']
-            );
-        });
+    const groupToDisplay = groups.find(g => g.name === groupToDisplayName);
+    const tasksToDisplay = groupToDisplay.tasks.map(name => tasks.find(t => t.name === name));
+
+    const handleTaskDelete = (taskName) => {
+        setGroups(prev => prev.map(g => ({
+            ...g,
+            tasks: g.tasks.filter(name => name !== taskName)
+        })));
+        setTasks(prev => prev.filter(t => t.name !== taskName));
     }
 
     const changePropHandler = (event, taskKey, taskProp) => {
@@ -30,10 +30,7 @@ export default function TaskContainer(props){
     const setTaskPropHandler = (input) => {
         const updatedTask = {...taskToEdit, [taskPropToEdit]: input}
         setTaskToEdit(updatedTask);
-        setTasks((prevTasks)=>
-            prevTasks.map(t => t.name === taskToEdit.name ? updatedTask : t)
-        );
-        console.log(taskToEdit);
+        setTasks(prevTasks => prevTasks.map(t => t.name === taskToEdit.name ? updatedTask : t));
         setTaskToEdit(null);
         setTaskPropToEdit(null);
     }
@@ -43,63 +40,66 @@ export default function TaskContainer(props){
         setTaskToAssign(task);
     }
 
-    const handleDisplayGroups = (group) => {
-        if(group === 'all'){
-            setGroupToDisplay(tasks);
-        } else {
-            const groupToBeAssigned = groups.find(g=>g.name===group);
-            setGroupToDisplay(groupToBeAssigned.tasks);
-        }
+    const handleDisplayGroups = (groupName) => {
+        setGroupToDisplayName(groupName);
     }
 
     const handleAddToGroup = (groupName) => {
-        let updatedGroup = groups.find(g=>g.name === groupName);
-        updatedGroup.tasks.push(taskToAssign);
-        setGroups((prevGroups)=> prevGroups.map(pg => pg.name === groupName ? updatedGroup : pg));
+        setTasks(prev => prev.map(t => {
+            if (t.name === taskToAssign.name) {
+                return { ...t, groups: [...t.groups, groupName] }
+            }
+            return t;
+        }));
+        setGroups(prev => prev.map(g => {
+            if (g.name === groupName) {
+                return { ...g, tasks: [...g.tasks, taskToAssign.name] }
+            }
+            return g;
+        }));
         setAssignGroups(false);
     }
 
     return (
         <div>
-            {assignGroups &&<div style={{position:'absolute', zIndex:"1000", width: '100%', height: 'auto', backgroundColor:'black', display: 'flex', flexDirection: 'column'}}>
-                {groups.map((group)=>(<button key={group.name} style={{margin: '10px'}} onClick={()=>{handleAddToGroup(group.name)}}>{group.name}</button>))}
-            </div>}
+            {assignGroups && (
+                <div style={{position:'absolute', zIndex:"1000", width: '100%', height: 'auto', backgroundColor:'black', display: 'flex', flexDirection: 'column'}}>
+                    {groups.map(group => (
+                        <button key={group.name} style={{margin: '10px'}} onClick={() => handleAddToGroup(group.name)}>
+                            {group.name}
+                        </button>
+                    ))}
+                </div>
+            )}
             <h2>{t('taskContainer')}</h2>
-            <button onClick={()=>{handleDisplayGroups('all')}}>{t('all')}</button>
-            {groups.map((group)=>(<button key={group.name + 'DisplayBtn'} onClick={()=>{handleDisplayGroups(group.name)}}>{group.name}</button>))}
+            {groups.map(group => (
+                <button key={group.name + 'DisplayBtn'} onClick={() => handleDisplayGroups(group.name)}>
+                    {group.name}
+                </button>
+            ))}
             <ul>
-            {groupToDisplay.map((task)=>(
-                <li key={task['name']}>
-                    {
-                        taskToEdit?.name === task.name && taskPropToEdit === 'name' 
-                        ? <input autoFocus type="text" defaultValue={task.name} onBlur={(e) => {setTaskPropHandler(e.target.value);setTaskToEdit(null); setTaskPropToEdit(null);}} />
-                        : <p onClick={(e) => changePropHandler(e, task['name'], 'name')}> 
-                            {task['name']}
-                        </p>
+            {tasksToDisplay.map((task, index) => (
+                <li key={index}>
+                    {taskToEdit?.name === task.name && taskPropToEdit === 'name'
+                        ? <input autoFocus type="text" defaultValue={task.name} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
+                        : <p onClick={(e) => changePropHandler(e, task.name, 'name')}>{task.name}</p>
                     }
-
-                    {
-                        taskToEdit?.name === task.name && taskPropToEdit === 'due' 
-                        ? <input autoFocus type="date" defaultValue={task.due ?? null} onBlur={(e) => {setTaskPropHandler(e.target.value);setTaskToEdit(null); setTaskPropToEdit(null);}} />
-                        : <p onClick={(e) => changePropHandler(e, task['name'], 'due')}> 
-                            {task['due']}
-                        </p>
+                    {taskToEdit?.name === task.name && taskPropToEdit === 'due'
+                        ? <input autoFocus type="date" defaultValue={task.due ?? null} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
+                        : <p onClick={(e) => changePropHandler(e, task.name, 'due')}>{task.due}</p>
                     }
-
-                    {task['description'] && 
-                        taskToEdit?.name === task.name && taskPropToEdit === 'description' 
-                        ? <input autoFocus type="text" defaultValue={task.description} onBlur={(e) => {setTaskPropHandler(e.target.value);setTaskToEdit(null); setTaskPropToEdit(null);}} />
-                        : <p onClick={(e) => changePropHandler(e, task['name'], 'description')}> 
-                            {task['description']}
-                        </p>
-                    }
-                    <button onClick={()=>{handleAssignGroup(task)}}>{t('assignGroup')}</button>
-                    <button onClick={() => handleTaskDelete(task)}>{t('taskDeleteBtn')}</button>
+                    {task.description && (
+                        taskToEdit?.name === task.name && taskPropToEdit === 'description'
+                        ? <input autoFocus type="text" defaultValue={task.description} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
+                        : <p onClick={(e) => changePropHandler(e, task.name, 'description')}>{task.description}</p>
+                    )}
+                    <button onClick={() => handleAssignGroup(task)}>{t('assignGroup')}</button>
+                    <button onClick={() => handleTaskDelete(task.name)}>{t('taskDeleteBtn')}</button>
                 </li>
-            ))} 
+            ))}
             </ul>
-            <button onClick={()=>{setShowStartSettings(true)}}>{t('start')}</button>
-            {showStartSettings && <startSettingsContainer />}
+            {!showStartSettings && <button onClick={() => setShowStartSettings(true)}>{t('start')}</button>}
+            {showStartSettings && <StartSettingsContainer setShowStartSettings={setShowStartSettings} t={t} groups={groups} />}
         </div>
     );
 }

@@ -15,6 +15,7 @@ const translations = {
         assignGroup: 'Zu Gruppe hinzufügen',
         all: 'Alle',
         start: 'Loslegen',
+        group: 'Task Gruppe',
     },
     en: {
         app: 'App',
@@ -32,6 +33,7 @@ const translations = {
         assignGroup: 'Assign to Group',
         all: 'All',
         start: 'Start',
+        group: 'Task group',
     }
 }
 

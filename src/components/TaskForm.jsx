@@ -1,21 +1,27 @@
-import React, { useState, useTransition } from 'react'
-
+import React, { useState } from 'react'
 
 export default function TaskForm(props){
-    const {t, setTasks} = props;
+    const {t, setTasks, setGroups} = props;
 
     function handleSubmit(e){
         e.preventDefault();
-        setTasks((prevTasks)=>[
-            ...prevTasks,
-            {
-                name: e.target[0].value,
-                due: e.target[1].value,
-                description: e.target[2].value,
-                groups: [],
-            }
+        const name = e.target[0].value;
+        const due = e.target[1].value;
+        const description = e.target[2].value;
+
+        setTasks((prev) => [
+            ...prev,
+            { name, due, description, groups: ['all'] }
         ]);
-        console.log('submitted: ' + e.target[0].value + ' ' + e.target[1].value + ' ' + e.target[2].value);
+
+        setGroups((prev) => prev.map(p => {
+            if (p.name === 'all') {
+                return { ...p, tasks: [...p.tasks, name] }
+            }
+            return p;
+        }));
+
+        console.log('submitted: ' + name + ' ' + due + ' ' + description);
         e.target[0].value = '';
         e.target[1].value = '';
         e.target[2].value = '';
