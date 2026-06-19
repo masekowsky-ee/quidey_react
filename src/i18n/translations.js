@@ -1,7 +1,7 @@
 const translations = {
     de: {
         app: 'App',
-        home: 'zu Hause',
+        home: 'Home',
         menu: 'Menü',
         profile: 'Profil',
         langPar: '(Deutsch)',
@@ -20,6 +20,7 @@ const translations = {
         planner: 'Planer',
         createGroupH2: 'Gruppe erstellen',
         groupName: 'Name',
+        settings: 'Einstellungen',
     },
     en: {
         app: 'App',
@@ -42,6 +43,7 @@ const translations = {
         planner: 'Planner',
         createGroupH2: 'Create Group',
         groupName: 'Name',
+        settings: 'Settings',
     }
 }
 

@@ -18,6 +18,10 @@
     
 }
 
+.input{
+    margin-bottom: 1rem;
+}
+
 .createBtn{
     all: unset;
     height: 2rem;

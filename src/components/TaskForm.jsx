@@ -11,25 +11,26 @@ export default function TaskForm(props){
         const description = e.target[2].value;
         const prioritise = e.target[3].checked;
         const index = taskIndexCounter;
+        if(name && due){
+            setTasks((prev) => [
+                ...prev,
+                { index: index, name: name, due: due, description: description, groups: ['all'], prioritise: prioritise }
+            ]);
 
-        setTasks((prev) => [
-            ...prev,
-            { index: index, name: name, due: due, description: description, groups: ['all'], prioritise: prioritise }
-        ]);
+            setTaskIndexCounter((prev)=>prev++);
 
-        setTaskIndexCounter((prev)=>prev++);
+            setGroups((prev) => prev.map(p => {
+                if (p.name === 'all') {
+                    return { ...p, tasks: [...p.tasks, index] }
+                }
+                return p;
+            }));
 
-        setGroups((prev) => prev.map(p => {
-            if (p.name === 'all') {
-                return { ...p, tasks: [...p.tasks, index] }
-            }
-            return p;
-        }));
-
-        console.log('submitted: '+ index + ' ' + name + ' ' + due + ' ' + description + ' ' + prioritise);
-        e.target[0].value = '';
-        e.target[1].value = '';
-        e.target[2].value = '';
+            console.log('submitted: '+ index + ' ' + name + ' ' + due + ' ' + description + ' ' + prioritise);
+            e.target[0].value = '';
+            e.target[1].value = '';
+            e.target[2].value = '';
+        }
     }
 
     return (

@@ -1,11 +1,25 @@
-import React, {useState} from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom';
+import styles from './Menu.module.css';
 
 export default function Menu(props){
-
+    const { isOpen, onClose, t } = props;
 
     return (
-        <div data-i18n="menu">
-            
-        </div>
+        <>
+            {isOpen && <div className={styles.overlay} onClick={onClose} />}
+            <div className={`${styles.menuDiv} ${isOpen ? styles.open : ''}`}>
+                <h2 className={styles.menuTitle}>{t('menu')}</h2>
+                <Link to="/" className={styles.menuItem} onClick={onClose}>
+                    {t('home')}
+                </Link>
+                <Link to="/profile" className={styles.menuItem} onClick={onClose}>
+                    {t('profile')}
+                </Link>
+                <Link to="/settings" className={styles.menuItem} onClick={onClose}>
+                    {t('settings')}
+                </Link>
+            </div>
+        </>
     );
 }
