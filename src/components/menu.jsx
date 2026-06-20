@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './Menu.module.css';
 
 export default function Menu(props){
-    const { isOpen, onClose, t } = props;
+    const { isOpen, onClose, t, setLanguage } = props;
 
     return (
         <>

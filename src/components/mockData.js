@@ -11,7 +11,14 @@ const mockData = {
         { name: 'test-group', tasks: [2], description: 'Test group for demonstration' },
         { name: 'test-description', tasks: [0], description: '' },
     ],
-    taskIndexCouter: 4
+    taskIndexCouter: 4,
+    users: [
+        {
+            username: 'test',
+            password: 'test',
+            profilePicture: '',
+        }
+    ]
 }
 
 export default mockData;

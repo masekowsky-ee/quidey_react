@@ -21,6 +21,14 @@ const translations = {
         createGroupH2: 'Gruppe erstellen',
         groupName: 'Name',
         settings: 'Einstellungen',
+        language: 'Sprache',
+        general: 'Allgemein',
+        english: 'Englisch',
+        german: 'Deutsch',
+        signIn: 'Anmelden',
+        userName: 'Benutzer Name',
+        password: 'Passwort',
+        signOut: 'Abmelden',
     },
     en: {
         app: 'App',
@@ -44,6 +52,14 @@ const translations = {
         createGroupH2: 'Create Group',
         groupName: 'Name',
         settings: 'Settings',
+        language: 'Language',
+        general: 'General',
+        english: 'English',
+        german: 'German',
+        signIn: 'Sign In',
+        userName: 'Username',
+        password: 'Password',
+        signOut: 'Sign Out',
     }
 }
 
