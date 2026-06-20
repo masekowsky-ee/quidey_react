@@ -3,7 +3,7 @@ import StartSettingsContainer from './StartSettingsContainer';
 import styles from './TaskContainer.module.css';
 
 export default function TaskContainer(props){
-    const {tasks, setTasks, t, groups, setGroups} = props;
+    const {tasks, setTasks, t, groups, setGroups, setWorkingGroup} = props;
 
     const [assignGroups, setAssignGroups] = useState(false);
     const [groupToDisplayName, setGroupToDisplayName] = useState('all');
@@ -133,7 +133,7 @@ export default function TaskContainer(props){
                 </ul>
             </div>
             {!showStartSettings && <button className={styles.startBtn} onClick={() => setShowStartSettings(true)}>{t('start')}</button>}
-            {showStartSettings && <StartSettingsContainer setShowStartSettings={setShowStartSettings} t={t} groups={groups} />}
+            {showStartSettings && <StartSettingsContainer setShowStartSettings={setShowStartSettings} t={t} groups={groups} setWorkingGroup={setWorkingGroup} />}
         </div>
     );
 }

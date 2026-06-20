@@ -14,7 +14,7 @@ export default function Home(props){
                 <TaskForm setTasks={props.setTasks} t={props.t} setGroups={props.setGroups} taskIndexCounter={props.taskIndexCounter} setTaskIndexCounter={props.setTaskIndexCounter} />
                 <GroupForm t={props.t} setGroups={props.setGroups} groups={props.groups} />
             </div>
-            <TaskContainer tasks={props.tasks} setTasks={props.setTasks} t={props.t} groups={props.groups} setGroups={props.setGroups} />
+            <TaskContainer tasks={props.tasks} setTasks={props.setTasks} t={props.t} groups={props.groups} setGroups={props.setGroups} setWorkingGroup={props.setWorkingGroup} />
             <Outlet />
         </div>
     );

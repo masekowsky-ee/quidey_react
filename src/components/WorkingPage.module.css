@@ -1,0 +1,75 @@
+.div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.h2{
+    width: 100%;
+    margin: 2rem 0;
+}
+
+.taskRow{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    gap: 0;
+}
+
+.toDoDiv{
+    background-color: rgb(49, 49, 49);
+    width: 50%;
+    max-width: 450px;
+    min-width: 300px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 2px solid lightgray;
+    border-left: 1px solid lightgray!important;
+    padding: 1rem 0;
+}
+
+.h3{
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.doneDiv{
+    background-color: rgb(49, 49, 49);
+    width: 50%;
+    max-width: 450px;
+    min-width: 300px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 2px solid lightgray;
+    border-left: 1px solid lightgray!important;
+    padding: 1rem 0;
+}
+
+.taskHeadDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.sessionDoneBtn{
+    margin: 1rem;
+    width: 5rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    border-bottom: 2px solid lightgray;
+    transition: all 0.2s ease;
+    box-sizing:content-box;
+}
+
+.sessionDoneBtn:hover{
+    transform: translateY(-2px);
+}
+
+.sessionDoneBtn:active{
+    transform: translateY(2px);
+}

@@ -29,6 +29,10 @@ const translations = {
         userName: 'Benutzer Name',
         password: 'Passwort',
         signOut: 'Abmelden',
+        currentGroup: 'Aktuelle Gruppe',
+        toDo: 'Unerledigt',
+        done: 'Erledigt',
+        sessionDone: 'Fertig',
     },
     en: {
         app: 'App',
@@ -60,6 +64,10 @@ const translations = {
         userName: 'Username',
         password: 'Password',
         signOut: 'Sign Out',
+        currentGroup: 'Current Group',
+        toDo: 'To Do',
+        done: 'Done',
+        sessionDone: 'Done',
     }
 }
 
