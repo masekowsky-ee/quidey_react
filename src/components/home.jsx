@@ -11,7 +11,7 @@ export default function Home(props){
 
     console.log(props.tasks);
     return (
-        <div>
+        <div className={styles.div}>
             <WeekDaysContainer t={t} tasks={tasks} />
             <div className={styles.formsDiv}>
                 <TaskForm setTasks={props.setTasks} t={props.t} setGroups={props.setGroups} taskIndexCounter={props.taskIndexCounter} setTaskIndexCounter={props.setTaskIndexCounter} />

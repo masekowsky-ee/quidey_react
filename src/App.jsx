@@ -33,7 +33,7 @@ function App(){
   console.log(tasks);
   return (
     <div>
-      <div>
+      <div className={styles.header}>
         <Header t={t} showMenu={() => setShowMenu(true)} />
       </div>
       <Menu t={t} isOpen={showMenu} onClose={() => setShowMenu(false)} />
