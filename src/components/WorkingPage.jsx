@@ -16,7 +16,7 @@ export default function WorkingPage(props){
     }
 
     const handleSessionDone = () => {
-        navigate('/')
+        navigate('/');
     }
 
     return(

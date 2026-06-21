@@ -33,6 +33,15 @@ const translations = {
         toDo: 'Unerledigt',
         done: 'Erledigt',
         sessionDone: 'Fertig',
+        today: 'Heute',
+        mon: 'Mo',
+        tue: 'Di',
+        wed: 'Mi',
+        thu: 'Do',
+        fri: 'Fr',
+        sat: 'Sa',
+        sun: 'So',
+        noTasksFound: 'Bisher keine Aufgaben',
     },
     en: {
         app: 'App',
@@ -68,6 +77,15 @@ const translations = {
         toDo: 'To Do',
         done: 'Done',
         sessionDone: 'Done',
+        today: 'Today',
+        mon: 'Mo',
+        tue: 'Tu',
+        wed: 'We',
+        thu: 'Th',
+        fri: 'Fr',
+        sat: 'Sa',
+        sun: 'Su',
+        noTasksFound: 'No tasks so far',
     }
 }
 
