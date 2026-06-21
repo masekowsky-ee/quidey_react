@@ -1,0 +1,68 @@
+.groupBtnDiv{
+    margin-top: 1rem;
+    width: 100%;
+    background-color: rgb(49, 49, 49);
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-top: 1px solid rgb(151, 151, 151);
+    border-bottom: 1px solid rgb(151, 151, 151);
+    overflow-x: scroll;
+}
+
+.groupBtn{
+    width: 5rem;
+    height: fit-content;
+    min-height: 1.5rem;
+    box-shadow: 0 2px 4px black;
+    transition: all 0.2s ease;
+}
+
+.groupBtn:hover{
+    transform: translateY(-1px);
+}
+
+.groupBtn:active{
+    transform: translateY(1px);
+}
+
+.groupDescriptionDiv{
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+    background-color: rgb(49, 49, 49);
+    border: 1px solid rgb(151, 151, 151);
+    border-radius: 15px;
+    width: 95%;
+    max-width: 600px;
+    justify-self: center;
+}
+
+.groupDescriptionDiv p{
+    color: white;
+    margin: 0;
+    width: 90%;
+    justify-self: center;
+}
+
+.groupDescriptionDiv input{
+    all: unset;
+    color: white;
+    margin: 0;
+    width: 90%;
+    background-color: hsla(0, 0%, 30%, 1);
+    border-radius: 5px;
+}
+
+.groupBtnDivInner{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 0 0.5rem;
+}
+
+.groupBtnDivInner + .groupBtnDivInner{
+    border-left: 1px solid rgb(151, 151, 151);
+}

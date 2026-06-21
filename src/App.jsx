@@ -29,6 +29,7 @@ function App(){
   const [users, setUsers] = useState(mockData.users);
 
   const [workingGroup, setWorkingGroup] = useState('all');
+  const [workingTime, setWorkingTime] = useState(null);
 
   console.log(tasks);
   return (
@@ -38,8 +39,8 @@ function App(){
       </div>
       <Menu t={t} isOpen={showMenu} onClose={() => setShowMenu(false)} />
       <Routes>
-        <Route path="/" element={<Home t={t} tasks={tasks} setTasks={setTasks} groups={groups} setGroups={setGroups} taskIndexCounter={taskIndexCounter} setTaskIndexCounter={setTaskIndexCounter} setWorkingGroup={setWorkingGroup} />} />
-        <Route path="/working" element={<WorkingPage t={t} setTasks={setTasks} tasks={tasks} groups={groups} workingGroup={workingGroup} setWorkingGroup={setWorkingGroup} />} />
+        <Route path="/" element={<Home setWorkingTime={setWorkingTime} t={t} tasks={tasks} setTasks={setTasks} groups={groups} setGroups={setGroups} taskIndexCounter={taskIndexCounter} setTaskIndexCounter={setTaskIndexCounter} setWorkingGroup={setWorkingGroup} />} />
+        <Route path="/working" element={<WorkingPage workingTime={workingTime} t={t} setTasks={setTasks} tasks={tasks} groups={groups} workingGroup={workingGroup} setWorkingGroup={setWorkingGroup} />} />
         <Route path="/profile" element={<Profile t={t} users={users} setUsers={setUsers} signedIn={signedIn} setSignedIn={setSignedIn} user={user} setUser={setUser} />} />
         <Route path="/settings" element={<Settings t={t} setLanguage={setLanguage} language={language} />} />
       </Routes>

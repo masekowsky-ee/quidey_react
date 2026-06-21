@@ -12,7 +12,7 @@ export default function WorkingPage(props){
     const handleTaskDone = (taskIndex) => {
         const task = tasks.find(t => t.index === taskIndex);
         task.done = !task.done;
-        setTasks((prev)=>[...prev, task]);
+        setTasks((prev)=>prev.map(p => (p.index === task.index ? task : p)));
     }
 
     const handleSessionDone = () => {

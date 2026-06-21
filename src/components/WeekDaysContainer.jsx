@@ -3,7 +3,7 @@ import styles from './WeekDaysContainer.module.css';
 
 export default function WeekDaysContainer(props){
     const { t, tasks } = props;
-    
+
     const today = new Date();
     const ttt1 = new Date(+ new Date() + 24 * 60 * 60 * 1000);
     const tt1 = ttt1.getDay()
@@ -64,7 +64,7 @@ export default function WeekDaysContainer(props){
                     </ul>
                 </div>
                 <div className={styles.weekDayDiv}>
-                    <h2>{t(t1)}</h2>
+                    <h2>{t(t1) + ' ' + ttt1.getUTCDate() + '.' + ttt1.getUTCMonth()}</h2>
                     <ul className={styles.dayList}>
                         {
                             dayTaskLis(ttt1)
@@ -72,7 +72,7 @@ export default function WeekDaysContainer(props){
                     </ul>
                 </div>
                 <div className={styles.weekDayDiv}>
-                    <h2>{t(t2)}</h2>
+                    <h2>{t(t2) + ' ' + ttt2.getUTCDate() + '.' + ttt1.getUTCMonth()}</h2>
                     <ul className={styles.dayList}>
                         {
                             dayTaskLis(ttt2)
@@ -80,7 +80,7 @@ export default function WeekDaysContainer(props){
                     </ul>
                 </div>
                 <div className={styles.weekDayDiv}>
-                    <h2>{t(t3)}</h2>
+                    <h2>{t(t3) + ' ' + ttt3.getUTCDate() + '.' + ttt1.getUTCMonth()}</h2>
                     <ul className={styles.dayList}>
                         {
                             dayTaskLis(ttt3)
@@ -88,7 +88,7 @@ export default function WeekDaysContainer(props){
                     </ul>
                 </div>
                 <div className={styles.weekDayDiv}>
-                    <h2>{t(t4)}</h2>
+                    <h2>{t(t4) + ' ' + ttt4.getUTCDate() + '.' + ttt1.getUTCMonth()}</h2>
                     <ul className={styles.dayList}>
                         {
                             dayTaskLis(ttt4)
@@ -96,7 +96,7 @@ export default function WeekDaysContainer(props){
                     </ul>
                 </div>
                 <div className={styles.weekDayDiv}>
-                    <h2>{t(t5)}</h2>
+                    <h2>{t(t5) + ' ' + ttt5.getUTCDate() + '.' + ttt1.getUTCMonth()}</h2>
                     <ul className={styles.dayList}>
                         {
                             dayTaskLis(ttt5)
@@ -104,7 +104,7 @@ export default function WeekDaysContainer(props){
                     </ul>
                 </div>
                 <div className={styles.weekDayDiv}>
-                    <h2>{t(t6)}</h2>
+                    <h2>{t(t6) + ' ' + ttt6.getUTCDate() + '.' + ttt1.getUTCMonth()}</h2>
                     <ul className={styles.dayList}>
                         {
                             dayTaskLis(ttt6)
@@ -112,7 +112,7 @@ export default function WeekDaysContainer(props){
                     </ul>
                 </div>
                 <div className={styles.weekDayDiv}>
-                    <h2>{t(t7)}</h2>
+                    <h2>{t(t7) + ' ' + ttt7.getUTCDate() + '.' + ttt1.getUTCMonth()}</h2>
                     <ul className={styles.dayList}>
                         {
                             dayTaskLis(ttt7)
