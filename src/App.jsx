@@ -15,7 +15,8 @@ function App(){
 
   const [groups, setGroups] = useState(mockData.groups);
 
-  const [taskIndexCounter, setTaskIndexCounter] = useState(mockData.taskIndexCouter);
+  let startCounter = mockData.taskIndexCouter;
+  const [taskIndexCounter, setTaskIndexCounter] = useState(startCounter);
 
   const [tasks, setTasks] = useState(mockData.tasks);
 

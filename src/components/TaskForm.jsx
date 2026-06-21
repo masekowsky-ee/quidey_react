@@ -10,14 +10,14 @@ export default function TaskForm(props){
         const due = e.target[1].value;
         const description = e.target[2].value;
         const prioritise = e.target[3].checked;
-        const index = taskIndexCounter;
         if(name && due){
+            setTaskIndexCounter((prev)=>prev+1);
+            const index = taskIndexCounter;
+
             setTasks((prev) => [
                 ...prev,
                 { index: index, name: name, due: due, description: description, groups: ['all'], prioritise: prioritise }
             ]);
-
-            setTaskIndexCounter((prev)=>prev++);
 
             setGroups((prev) => prev.map(p => {
                 if (p.name === 'all') {
