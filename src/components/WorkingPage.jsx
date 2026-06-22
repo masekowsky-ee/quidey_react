@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from './WorkingPage.module.css'
 import { useNavigate } from "react-router-dom";
 import TimerContainer from "../TimerContainer";
@@ -8,18 +8,28 @@ export default function WorkingPage(props){
 
     const navigate = useNavigate();
 
-    let group = groups.find(g => g.name === sessionParams.group);
+    const [group, setGroup] = useState(null);    
+
+    useEffect(()=>{
+        if(!groups.some(g => g.name === sessionParams.group)){
+            setSessionParams({group: 'all', time: 30*60*1000, breaks: true});
+            return;
+        }
+        const found = groups.find(g => g.name === sessionParams.group)
+        setGroup(found);
+    }, [sessionParams, groups]);
 
     const handleTaskDone = (taskIndex) => {
-        const task = tasks.find(t => t.index === taskIndex);
-        task.done = !task.done;
-        setTasks((prev)=>prev.map(p => (p.index === task.index ? task : p)));
+        setTasks(prev => prev.map(p => 
+            p.index === taskIndex ? { ...p, done: !p.done } : p
+        ));
     }
 
     const handleSessionDone = () => {
         navigate('/');
     }
 
+    if (!group) return null;
     return(
         <div className={styles.div}>
             <h2 className={styles.h2}>{t('currentGroup')}: {sessionParams.group}</h2>
@@ -27,8 +37,8 @@ export default function WorkingPage(props){
                 <div className={styles.toDoDiv}>
                     <h3 className={styles.h3}>{t('toDo')}</h3>
                     {
-                        group.tasks.map((t) => {
-                            const displayTask = tasks.find(task => task.index === t)
+                        group.tasks.map((ta) => {
+                            const displayTask = tasks.find(task => task.index === ta)
                             if(!displayTask.done){
                                 return (
                                     <div key={displayTask.index}>
@@ -40,6 +50,8 @@ export default function WorkingPage(props){
                                         {displayTask.description && <p>{displayTask.description}</p>}
                                     </div>
                                 )
+                            } else {
+                                return null;
                             }
                         })
                     }
@@ -47,8 +59,8 @@ export default function WorkingPage(props){
                 <div className={styles.doneDiv}>
                     <h3 className={styles.h3}>{t('done')}</h3>
                     {
-                        group.tasks.map((t) => {
-                            const displayTask = tasks.find(task => task.index === t)
+                        group.tasks.map((ta) => {
+                            const displayTask = tasks.find(task => task.index === ta)
                             if(displayTask.done){
                                 return (
                                     <div key={displayTask.index}>
@@ -56,6 +68,8 @@ export default function WorkingPage(props){
                                         <input type="checkbox" checked onChange={()=>handleTaskDone(displayTask.index)} />
                                     </div>
                                 )
+                            } else {
+                                return null;
                             }
                         })
                     }

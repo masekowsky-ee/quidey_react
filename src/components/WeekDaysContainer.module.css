@@ -12,6 +12,7 @@
     min-height: 100px;
     padding: 0.5rem 0;
     border-bottom: 1px solid rgb(143, 142, 142);
+    min-width: 100px;
 }
 
 .weekDayDiv + .weekDayDiv {
@@ -21,4 +22,10 @@
 .dayList{
     list-style: none;
     padding: 0;
+}
+
+@media screen and (max-width: 800px) {
+    .weekTable{
+        overflow-x: scroll;
+    }
 }

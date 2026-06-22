@@ -80,6 +80,16 @@ export default function TaskContainer(props){
         setTasks((prev)=>prev.map(p => (p.index === task.index ? task : p)));
     }
 
+    function toDateOnly(date) {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    }
+
+    function compareDate(dueDate){
+        const today = toDateOnly(new Date());
+        const due = toDateOnly(new Date(dueDate));
+        return today > due; 
+    }
+
     return (
         <div>
             {assignGroups && (
@@ -119,7 +129,7 @@ export default function TaskContainer(props){
                                 </div>
                                 {taskToEdit?.index === task.index && taskPropToEdit === 'due'
                                     ? <input autoFocus type="date" defaultValue={task.due ?? null} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
-                                    : <p onClick={(e) => changePropHandler(e, task.index, 'due')}>{task.due}</p>
+                                    : <p style={compareDate(task.due) ? { color: 'red' } : {}} onClick={(e) => changePropHandler(e, task.index, 'due')}>{task.due}</p>
                                 }
                                 {task.description ? (
                                     taskToEdit?.index === task.index && taskPropToEdit === 'description'
