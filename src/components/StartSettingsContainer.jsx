@@ -3,19 +3,22 @@ import {useNavigate} from 'react-router-dom'
 import styles from './StartSettingsContainer.module.css'
 
 const StartSettingsContainer = (props) => {
-    const { t, groups, setShowStartSettings, setWorkingGroup, setWorkingTime } = props;
+    const { t, groups, setShowStartSettings, setWorkingGroup, setWorkingTime, setCustomError } = props;
 
     const navigate = useNavigate();
 
     const handleStartSession = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        setWorkingGroup(form.elements.groups.value);
-        const h = Number(form.elements.hours.value);
-        const m = Number(form.elements.mins.value);
-        setWorkingTime(h * 3600 + m * 60);
-        setShowStartSettings(false);
-        navigate('/working');
+        if(form.elements.hours.value !== 0 || form.elements.mins.value !== 0){e.preventDefault();
+            const form = e.target;
+            setWorkingGroup(form.elements.groups.value);
+            const h = Number(form.elements.hours.value);
+            const m = Number(form.elements.mins.value);
+            setWorkingTime(h * 3600 + m * 60);
+            setShowStartSettings(false);
+            navigate('/working');
+        } else {
+            setCustomError({bool: true, message: t('sessionTimeError')});
+        }
     }
 
     return (

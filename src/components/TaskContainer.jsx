@@ -4,7 +4,7 @@ import styles from './TaskContainer.module.css';
 
 
 export default function TaskContainer(props){
-    const {tasks, setTasks, t, groups, setGroups, setWorkingGroup, groupToDisplayName, setGroupToDisplayName, setWorkingTime} = props;
+    const {tasks, setTasks, t, groups, setGroups, setWorkingGroup, groupToDisplayName, setGroupToDisplayName, setWorkingTime, setCustomError} = props;
 
     const [assignGroups, setAssignGroups] = useState(false);
     const [taskToAssign, setTaskToAssign] = useState(null);
@@ -164,7 +164,7 @@ export default function TaskContainer(props){
                 </div>
             </div>
             {!showStartSettings && <button className={styles.startBtn} onClick={() => setShowStartSettings(true)}>{t('start')}</button>}
-            {showStartSettings && <StartSettingsContainer setWorkingTime={setWorkingTime} setShowStartSettings={setShowStartSettings} t={t} groups={groups} setWorkingGroup={setWorkingGroup} />}
+            {showStartSettings && <StartSettingsContainer setCustomError={setCustomError} setWorkingTime={setWorkingTime} setShowStartSettings={setShowStartSettings} t={t} groups={groups} setWorkingGroup={setWorkingGroup} />}
         </div>
     );
 }

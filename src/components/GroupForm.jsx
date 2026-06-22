@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './GroupForm.module.css';
 
 export default function GroupForm(props){
-    const {t, setGroups, groups} = props;
+    const {t, setGroups, groups, setCustomError} = props;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -12,6 +12,8 @@ export default function GroupForm(props){
             setGroups((prev) => [...prev, { name: name, tasks: [], description: description }]);
             e.target[0].value = '';
             e.target[1].value = '';
+        } else{
+            setCustomError({bool: true, message: t('groupError')})
         }
     }
 

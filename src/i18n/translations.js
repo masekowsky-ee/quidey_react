@@ -42,6 +42,10 @@ const translations = {
         sat: 'Sa',
         sun: 'So',
         noTasksFound: 'Bisher keine Aufgaben',
+
+
+        groupError: 'Bitte gib einen gültigen, unbenutzten Gruppennamen ein',
+        sessionTimeError: 'Bitte gib eine gültige Zeit ein (00:15 - 03:45)',
     },
     en: {
         app: 'App',
@@ -86,6 +90,10 @@ const translations = {
         sat: 'Sa',
         sun: 'Su',
         noTasksFound: 'No tasks so far',
+
+
+        groupError: 'Please enter a valid, unused group name',
+        sessionTimeError: 'Please enter a valid time (00:15 - 03:45)',
     }
 }
 
