@@ -42,6 +42,7 @@ const translations = {
         sat: 'Sa',
         sun: 'So',
         noTasksFound: 'Bisher keine Aufgaben',
+        breaks: 'Pausen',
 
 
         groupError: 'Bitte gib einen gültigen, unbenutzten Gruppennamen ein',
@@ -90,6 +91,7 @@ const translations = {
         sat: 'Sa',
         sun: 'Su',
         noTasksFound: 'No tasks so far',
+        breaks: 'Breaks',
 
 
         groupError: 'Please enter a valid, unused group name',

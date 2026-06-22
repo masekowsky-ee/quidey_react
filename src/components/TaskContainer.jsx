@@ -4,7 +4,7 @@ import styles from './TaskContainer.module.css';
 
 
 export default function TaskContainer(props){
-    const {tasks, setTasks, t, groups, setGroups, setWorkingGroup, groupToDisplayName, setGroupToDisplayName, setWorkingTime, setCustomError} = props;
+    const {tasks, setTasks, t, groups, setGroups, groupToDisplayName, setGroupToDisplayName, setSessionParams, setCustomError} = props;
 
     const [assignGroups, setAssignGroups] = useState(false);
     const [taskToAssign, setTaskToAssign] = useState(null);
@@ -108,7 +108,7 @@ export default function TaskContainer(props){
                     <ul className={styles.ul}>
                     {tasksToDisplay.map((task) => {
                         if(!task.done){
-                            return (<li key={task.index}>
+                            return (<li key={task.index} className={styles.taskLi}>
                                 <div className={styles.taskHeader}>
                                     {
                                     taskToEdit?.index === task?.index && taskPropToEdit === 'name'
@@ -121,10 +121,12 @@ export default function TaskContainer(props){
                                     ? <input autoFocus type="date" defaultValue={task.due ?? null} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
                                     : <p onClick={(e) => changePropHandler(e, task.index, 'due')}>{task.due}</p>
                                 }
-                                {task.description && (
+                                {task.description ? (
                                     taskToEdit?.index === task.index && taskPropToEdit === 'description'
                                     ? <input autoFocus type="text" defaultValue={task.description} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
                                     : <p onClick={(e) => changePropHandler(e, task.index, 'description')}>{task.description}</p>
+                                ) : (
+                                    <input type="text" onClick={(e)=>changePropHandler(e, task.index, 'description')} onBlur={(e) => { setTaskPropHandler(e.target.value);}} />
                                 )}
                                 <button onClick={() => handleAssignGroup(task)}>{t('assignGroup')}</button>
                                 <button onClick={() => handleTaskDelete(task.index)}>{t('taskDeleteBtn')}</button>
@@ -137,7 +139,7 @@ export default function TaskContainer(props){
                     <ul className={styles.ul}>
                     {tasksToDisplay.map((task) => {
                         if(task.done){
-                            return (<li key={task.index}>
+                            return (<li key={task.index} className={styles.taskLi}>
                                 <div className={styles.taskHeader}>
                                     {
                                     taskToEdit?.index === task?.index && taskPropToEdit === 'name'
@@ -150,10 +152,12 @@ export default function TaskContainer(props){
                                     ? <input autoFocus type="date" defaultValue={task.due ?? null} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
                                     : <p onClick={(e) => changePropHandler(e, task.index, 'due')}>{task.due}</p>
                                 }
-                                {task.description && (
+                                {task.description ? (
                                     taskToEdit?.index === task.index && taskPropToEdit === 'description'
                                     ? <input autoFocus type="text" defaultValue={task.description} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
                                     : <p onClick={(e) => changePropHandler(e, task.index, 'description')}>{task.description}</p>
+                                ) : (
+                                    <input type="text" onClick={(e)=>changePropHandler(e, task.index, 'description')} onBlur={(e) => { setTaskPropHandler(e.target.value);}} />
                                 )}
                                 <button onClick={() => handleAssignGroup(task)}>{t('assignGroup')}</button>
                                 <button onClick={() => handleTaskDelete(task.index)}>{t('taskDeleteBtn')}</button>
@@ -164,7 +168,7 @@ export default function TaskContainer(props){
                 </div>
             </div>
             {!showStartSettings && <button className={styles.startBtn} onClick={() => setShowStartSettings(true)}>{t('start')}</button>}
-            {showStartSettings && <StartSettingsContainer setCustomError={setCustomError} setWorkingTime={setWorkingTime} setShowStartSettings={setShowStartSettings} t={t} groups={groups} setWorkingGroup={setWorkingGroup} />}
+            {showStartSettings && <StartSettingsContainer setCustomError={setCustomError} setSessionParams={setSessionParams} setShowStartSettings={setShowStartSettings} t={t} groups={groups} />}
         </div>
     );
 }

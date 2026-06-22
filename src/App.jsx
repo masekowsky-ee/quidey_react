@@ -29,8 +29,7 @@ function App(){
 
   const [users, setUsers] = useState(mockData.users);
 
-  const [workingGroup, setWorkingGroup] = useState('all');
-  const [workingTime, setWorkingTime] = useState(null);
+  const [sessionParams, setSessionParams] = useState({group: null, time: null, breaks: null});
 
   const [customError, setCustomError] = useState({bool: false, message: ''});
 
@@ -43,8 +42,8 @@ function App(){
       <Menu t={t} isOpen={showMenu} onClose={() => setShowMenu(false)} />
       <CustomError t={t} customError={customError} setCustomError={setCustomError} />
       <Routes>
-        <Route path="/" element={<Home setWorkingTime={setWorkingTime} t={t} tasks={tasks} setTasks={setTasks} groups={groups} setGroups={setGroups} taskIndexCounter={taskIndexCounter} setTaskIndexCounter={setTaskIndexCounter} setWorkingGroup={setWorkingGroup} setCustomError={setCustomError} />} />
-        <Route path="/working" element={<WorkingPage workingTime={workingTime} t={t} setTasks={setTasks} tasks={tasks} groups={groups} workingGroup={workingGroup} setWorkingGroup={setWorkingGroup} setCustomError={setCustomError} />} />
+        <Route path="/" element={<Home t={t} tasks={tasks} setTasks={setTasks} groups={groups} setGroups={setGroups} taskIndexCounter={taskIndexCounter} setSessionParams={setSessionParams} setTaskIndexCounter={setTaskIndexCounter} setCustomError={setCustomError} />} />
+        <Route path="/working" element={<WorkingPage t={t} setTasks={setTasks} tasks={tasks} groups={groups} sessionParams={sessionParams} setSessionParams={setSessionParams} setCustomError={setCustomError} />} />
         <Route path="/profile" element={<Profile t={t} users={users} setUsers={setUsers} signedIn={signedIn} setSignedIn={setSignedIn} user={user} setUser={setUser} setCustomError={setCustomError} />} />
         <Route path="/settings" element={<Settings t={t} setLanguage={setLanguage} language={language} setCustomError={setCustomError} />} />
       </Routes>
@@ -52,4 +51,4 @@ function App(){
   );
 }
 
-export default App
+export default App;
