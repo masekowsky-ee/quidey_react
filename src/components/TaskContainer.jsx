@@ -75,9 +75,9 @@ export default function TaskContainer(props){
     }
 
     const handleTaskDone = (taskIndex) => {
-        const task = tasks.find(t => t.index === taskIndex);
-        task.done = !task.done;
-        setTasks((prev)=>prev.map(p => (p.index === task.index ? task : p)));
+        setTasks(prev => prev.map(p =>
+            p.index === taskIndex ? { ...p, done: !p.done } : p
+        ));
     }
 
     function toDateOnly(date) {
@@ -88,6 +88,10 @@ export default function TaskContainer(props){
         const today = toDateOnly(new Date());
         const due = toDateOnly(new Date(dueDate));
         return today > due; 
+    }
+
+    const handlePrioritiseToggle = (taskIndex) => {
+        setTasks((prev) => prev.map(t => (t.index === taskIndex ?  { ...t, prioritise: !t.prioritise } : t)));
     }
 
     return (
@@ -117,7 +121,7 @@ export default function TaskContainer(props){
                 <div className={styles.ulDiv}>
                     <ul className={styles.ul}>
                     {tasksToDisplay.map((task) => {
-                        if(!task.done){
+                        if(!task.done && task.prioritise){
                             return (<li key={task.index} className={styles.taskLi}>
                                 <div className={styles.taskHeader}>
                                     {
@@ -131,15 +135,54 @@ export default function TaskContainer(props){
                                     ? <input autoFocus type="date" defaultValue={task.due ?? null} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
                                     : <p style={compareDate(task.due) ? { color: 'red' } : {}} onClick={(e) => changePropHandler(e, task.index, 'due')}>{task.due}</p>
                                 }
+                                <div>
+                                    <label>{t('prioritise')}:</label>
+                                    <input type="checkbox" name="prioritise" checked={task.prioritise} onChange={()=>handlePrioritiseToggle(task.index)} />
+                                </div>
                                 {task.description ? (
                                     taskToEdit?.index === task.index && taskPropToEdit === 'description'
                                     ? <input autoFocus type="text" defaultValue={task.description} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
                                     : <p onClick={(e) => changePropHandler(e, task.index, 'description')}>{task.description}</p>
                                 ) : (
-                                    <input type="text" onClick={(e)=>changePropHandler(e, task.index, 'description')} onBlur={(e) => { setTaskPropHandler(e.target.value);}} />
+                                    <input type="text" placeholder={t('description') + '...'} onClick={(e)=>changePropHandler(e, task.index, 'description')} onBlur={(e) => { setTaskPropHandler(e.target.value);}} />
                                 )}
-                                <button onClick={() => handleAssignGroup(task)}>{t('assignGroup')}</button>
-                                <button onClick={() => handleTaskDelete(task.index)}>{t('taskDeleteBtn')}</button>
+                                <div className={styles.btnDiv}>
+                                    <button className={styles.btn} onClick={() => handleAssignGroup(task)}>{t('assignGroup')}</button>
+                                    <button className={styles.btn} onClick={() => handleTaskDelete(task.index)}>{<svg onClick={()=>handleRemoveGroup(group.name)} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M280-120q-33 0-56.5-23.5T200-200v-520q-17 0-28.5-11.5T160-760q0-17 11.5-28.5T200-800h160q0-17 11.5-28.5T400-840h160q17 0 28.5 11.5T600-800h160q17 0 28.5 11.5T800-760q0 17-11.5 28.5T760-720v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM428.5-291.5Q440-303 440-320v-280q0-17-11.5-28.5T400-640q-17 0-28.5 11.5T360-600v280q0 17 11.5 28.5T400-280q17 0 28.5-11.5Zm160 0Q600-303 600-320v-280q0-17-11.5-28.5T560-640q-17 0-28.5 11.5T520-600v280q0 17 11.5 28.5T560-280q17 0 28.5-11.5ZM280-720v520-520Z"/></svg>}</button>
+                                </div>
+                            </li>)
+                        }
+                    })}
+                    {tasksToDisplay.map((task) => {
+                        if(!task.done && !task.prioritise){
+                            return (<li key={task.index} className={styles.taskLi}>
+                                <div className={styles.taskHeader}>
+                                    {
+                                    taskToEdit?.index === task?.index && taskPropToEdit === 'name'
+                                        ? <input autoFocus type="text" defaultValue={task.name} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
+                                        : <p onClick={(e) => changePropHandler(e, task.index, 'name')}>{task['name']}</p>
+                                    }
+                                    <input type="checkbox" onChange={()=>{handleTaskDone(task.index)}} />
+                                </div>
+                                {taskToEdit?.index === task.index && taskPropToEdit === 'due'
+                                    ? <input autoFocus type="date" defaultValue={task.due ?? null} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
+                                    : <p style={compareDate(task.due) ? { color: 'red' } : {}} onClick={(e) => changePropHandler(e, task.index, 'due')}>{task.due}</p>
+                                }
+                                <div>
+                                    <label>{t('prioritise')}:</label>
+                                    <input type="checkbox" name="prioritise" checked={task.prioritise} onChange={()=>handlePrioritiseToggle(task.index)} />
+                                </div>
+                                {task.description ? (
+                                    taskToEdit?.index === task.index && taskPropToEdit === 'description'
+                                    ? <input autoFocus type="text" defaultValue={task.description} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
+                                    : <p onClick={(e) => changePropHandler(e, task.index, 'description')}>{task.description}</p>
+                                ) : (
+                                    <input type="text" placeholder={t('description') + '...'} onClick={(e)=>changePropHandler(e, task.index, 'description')} onBlur={(e) => { setTaskPropHandler(e.target.value);}} />
+                                )}
+                                <div className={styles.btnDiv}>
+                                    <button className={styles.btn} onClick={() => handleAssignGroup(task)}>{t('assignGroup')}</button>
+                                    <button className={styles.btn} onClick={() => handleTaskDelete(task.index)}>{<svg onClick={()=>handleRemoveGroup(group.name)} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M280-120q-33 0-56.5-23.5T200-200v-520q-17 0-28.5-11.5T160-760q0-17 11.5-28.5T200-800h160q0-17 11.5-28.5T400-840h160q17 0 28.5 11.5T600-800h160q17 0 28.5 11.5T800-760q0 17-11.5 28.5T760-720v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM428.5-291.5Q440-303 440-320v-280q0-17-11.5-28.5T400-640q-17 0-28.5 11.5T360-600v280q0 17 11.5 28.5T400-280q17 0 28.5-11.5Zm160 0Q600-303 600-320v-280q0-17-11.5-28.5T560-640q-17 0-28.5 11.5T520-600v280q0 17 11.5 28.5T560-280q17 0 28.5-11.5ZM280-720v520-520Z"/></svg>}</button>
+                                </div>
                             </li>)
                         }
                     })}
@@ -158,19 +201,7 @@ export default function TaskContainer(props){
                                     }
                                     <input type="checkbox" checked onChange={()=>{handleTaskDone(task.index)}} />
                                 </div>
-                                {taskToEdit?.index === task.index && taskPropToEdit === 'due'
-                                    ? <input autoFocus type="date" defaultValue={task.due ?? null} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
-                                    : <p onClick={(e) => changePropHandler(e, task.index, 'due')}>{task.due}</p>
-                                }
-                                {task.description ? (
-                                    taskToEdit?.index === task.index && taskPropToEdit === 'description'
-                                    ? <input autoFocus type="text" defaultValue={task.description} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
-                                    : <p onClick={(e) => changePropHandler(e, task.index, 'description')}>{task.description}</p>
-                                ) : (
-                                    <input type="text" onClick={(e)=>changePropHandler(e, task.index, 'description')} onBlur={(e) => { setTaskPropHandler(e.target.value);}} />
-                                )}
-                                <button onClick={() => handleAssignGroup(task)}>{t('assignGroup')}</button>
-                                <button onClick={() => handleTaskDelete(task.index)}>{t('taskDeleteBtn')}</button>
+                                <button className={styles.btn + ' ' + styles.delete} onClick={() => handleTaskDelete(task.index)}>{<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M280-120q-33 0-56.5-23.5T200-200v-520q-17 0-28.5-11.5T160-760q0-17 11.5-28.5T200-800h160q0-17 11.5-28.5T400-840h160q17 0 28.5 11.5T600-800h160q17 0 28.5 11.5T800-760q0 17-11.5 28.5T760-720v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM428.5-291.5Q440-303 440-320v-280q0-17-11.5-28.5T400-640q-17 0-28.5 11.5T360-600v280q0 17 11.5 28.5T400-280q17 0 28.5-11.5Zm160 0Q600-303 600-320v-280q0-17-11.5-28.5T560-640q-17 0-28.5 11.5T520-600v280q0 17 11.5 28.5T560-280q17 0 28.5-11.5ZM280-720v520-520Z"/></svg>}</button>
                             </li>)
                         }
                     })}

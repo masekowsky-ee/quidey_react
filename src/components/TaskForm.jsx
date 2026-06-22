@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './TaskForm.module.css';
 
 export default function TaskForm(props){
-    const {t, setTasks, setGroups, taskIndexCounter, setTaskIndexCounter} = props;
+    const {t, setTasks, setGroups, taskIndexCounter, setTaskIndexCounter, showForms} = props;
 
     function handleSubmit(e){
         e.preventDefault();
@@ -34,9 +34,9 @@ export default function TaskForm(props){
     }
 
     return (
-        <div className={styles.div}>
+        <div className={`${styles.div} ${showForms ? '' : styles.height}`}>
             <h2 className={styles.h2}>{t('createTaskH2')}</h2>
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <form className={`${styles.form} ${showForms ? '' : styles.hidden}`}onSubmit={handleSubmit}>
                 <input className={styles.input} type="text" placeholder={t('taskName')} />
                 <input className={styles.input} type="date" />
                 <input className={styles.input} type="text" placeholder={t('description')} />

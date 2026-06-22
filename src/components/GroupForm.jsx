@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './GroupForm.module.css';
 
 export default function GroupForm(props){
-    const {t, setGroups, groups, setCustomError} = props;
+    const {t, setGroups, groups, setCustomError, showForms} = props;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,9 +18,9 @@ export default function GroupForm(props){
     }
 
     return (
-        <div className={styles.div}>
+        <div className={`${styles.div} ${showForms ? '' : styles.height}`}>
             <h2 className={styles.h2}>{t('createGroupH2')}</h2>
-            <form className={styles.form} onSubmit={(e)=>{handleSubmit(e)}}>
+            <form className={`${styles.form} ${showForms ? '' : styles.hidden}`} onSubmit={(e)=>{handleSubmit(e)}}>
                 <input type="text" className={styles.input} placeholder={t('groupName')} />
                 <input type="text" className={styles.input} placeholder={t('description')} />
                 <button type="submit" className={styles.createBtn}>{t('createBtn')}</button>

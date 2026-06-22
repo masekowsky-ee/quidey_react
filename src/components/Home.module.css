@@ -10,6 +10,7 @@
     justify-content: center;
     gap: 2rem;
     width: 100%;
+    position: relative;
 }
 .weekTable{
     width: 100%;
@@ -35,3 +36,18 @@
     list-style: none;
     padding: 0;
 }
+.sizeBtn{
+    all: unset;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2.5rem;
+    border: 2px solid grey;
+    background-color: rgb(49,49,49);
+    border-radius: 5px;
+    width: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

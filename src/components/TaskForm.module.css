@@ -39,6 +39,18 @@
     margin-bottom: 1rem;
 }
 
+.hidden{
+    display: none!important;
+}
+
+.height{
+    height: fit-content!important;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+    padding: 1rem!important;
+}
+
 .createBtn:hover{
     transform: translateY(-3px);
 }
