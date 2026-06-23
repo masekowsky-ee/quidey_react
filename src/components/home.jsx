@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import TaskContainer from './TaskContainer'
-import TaskForm from './TaskForm'
+import TaskContainer from './TaskContainer.jsx'
+import TaskForm from './TaskForm.jsx'
 import styles from './Home.module.css';
 import GroupForm from './GroupForm';
 import { Outlet } from 'react-router-dom';
-import WeekDaysContainer from './WeekDaysContainer';
-import GroupBtnContainer from './GroupBtnContainer';
+import WeekDaysContainer from './WeekDaysContainer.jsx';
+import GroupBtnContainer from './GroupBtnContainer.jsx';
 
 export default function Home(props){
     const {t, tasks, groups, setGroups, setSessionParams, setCustomError} = props;

@@ -3,13 +3,13 @@ import { Routes, Route } from 'react-router-dom'
 import {useTranslation} from './i18n/LanguageContext'
 import mockData from './components/mockData'
 import styles from './App.module.css';
-import Header from './components/Header';
-import Home from './components/Home'
-import Menu from './components/Menu'
-import Profile from './components/Profile'
-import Settings from './components/Settings'
-import WorkingPage from './components/WorkingPage';
-import CustomError from './components/CustomError';
+import Header from './components/Header.jsx';
+import Home from './components/Home.jsx'
+import Menu from './components/Menu.jsx'
+import Profile from './components/Profile.jsx'
+import Settings from './components/Settings.jsx'
+import WorkingPage from './components/WorkingPage.jsx';
+import CustomError from './components/CustomError.jsx';
 
 function App(){
   const { t, language, setLanguage } = useTranslation();
