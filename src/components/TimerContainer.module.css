@@ -9,6 +9,7 @@
 }
 .timerH2{
     font-size: 2rem;
+    margin: 0 0.25rem;
 }
 .outerTimer{
     height: 20px;
@@ -30,5 +31,20 @@
     margin-top: 1rem;
 }
 .btn{
+
+}
+
+.input{
+    background-color: transparent;
+    border: none;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.75rem;
+}
+
+.editTimerDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
 }

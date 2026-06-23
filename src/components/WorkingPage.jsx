@@ -32,8 +32,8 @@ export default function WorkingPage(props){
     if (!group) return null;
     return(
         <div className={styles.div}>
-            <h2 className={styles.h2}>{t('currentGroup')}: {sessionParams.group}</h2>
-            <TimerContainer sessionParams={sessionParams} />
+            <h2 className={styles.h2}>{t('currentGroup')}: {sessionParams.group === 'all' ? t('all') : sessionParams.group}</h2>
+            <TimerContainer setSessionParams={setSessionParams} sessionParams={sessionParams} />
             <div className={styles.taskRow}>
                 <div className={styles.toDoDiv}>
                     <h3 className={styles.h3}>{t('toDo')}</h3>
