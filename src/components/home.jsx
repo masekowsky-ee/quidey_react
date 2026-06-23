@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import TaskContainer from './TaskContainer.jsx'
 import TaskForm from './TaskForm.jsx'
 import styles from './Home.module.css';
-import GroupForm from './GroupForm';
+import GroupForm from './GroupForm.jsx';
 import { Outlet } from 'react-router-dom';
 import WeekDaysContainer from './WeekDaysContainer.jsx';
 import GroupBtnContainer from './GroupBtnContainer.jsx';

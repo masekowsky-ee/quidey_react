@@ -4,9 +4,9 @@ import {useTranslation} from './i18n/LanguageContext'
 import mockData from './components/mockData'
 import styles from './App.module.css';
 import Header from './components/Header.jsx';
-import Home from './components/Home.jsx'
-import Menu from './components/Menu.jsx'
-import Profile from './components/Profile.jsx'
+import Home from './components/home.jsx'
+import Menu from './components/menu.jsx'
+import Profile from './components/profile.jsx'
 import Settings from './components/Settings.jsx'
 import WorkingPage from './components/WorkingPage.jsx';
 import CustomError from './components/CustomError.jsx';
