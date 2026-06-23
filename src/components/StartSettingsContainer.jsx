@@ -8,16 +8,15 @@ const StartSettingsContainer = (props) => {
     const navigate = useNavigate();
 
     const handleStartSession = (e) => {
-        if(e.target.elements.hours.value !== 0 || e.target.elements.mins.value !== 0){
-            e.preventDefault();
-            const form = e.target;
-            const h = Number(form.elements.hours.value);
-            const m = Number(form.elements.mins.value);
-            setSessionParams({group: form.elements.groups.value ,time: (h * 3600 + m * 60), breaks: form.elements.breaks.value});
+        e.preventDefault();
+        const form = e.target;
+        const h = Number(form.elements.hours.value);
+        const m = Number(form.elements.mins.value);
+        if(h !== 0 || m !== 0){
+            setSessionParams({group: form.elements.groups.value ,time: (h * 3600 * 1000 + m * 60 * 1000), breaks: form.elements.breaks.checked});
             setShowStartSettings(false);
             navigate('/working');
         } else {
-            e.preventDefault();
             setCustomError({bool: true, message: t('sessionTimeError')});
         }
     }

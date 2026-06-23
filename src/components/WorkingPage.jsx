@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from './WorkingPage.module.css'
 import { useNavigate } from "react-router-dom";
-import TimerContainer from "../TimerContainer";
+import TimerContainer from "./TimerContainer";
 
 export default function WorkingPage(props){
     const { t, tasks, setTasks, groups, setSessionParams, sessionParams } = props;
@@ -33,6 +33,7 @@ export default function WorkingPage(props){
     return(
         <div className={styles.div}>
             <h2 className={styles.h2}>{t('currentGroup')}: {sessionParams.group}</h2>
+            <TimerContainer sessionParams={sessionParams} />
             <div className={styles.taskRow}>
                 <div className={styles.toDoDiv}>
                     <h3 className={styles.h3}>{t('toDo')}</h3>
