@@ -25,6 +25,15 @@
     padding: 0;
 }
 
+.notDone{
+    color: lightgray
+}
+
+.done{
+    text-decoration: line-through;
+    color: gray;
+}
+
 @media screen and (max-width: 800px) {
     .weekTable{
         overflow-x: scroll;

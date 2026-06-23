@@ -48,7 +48,7 @@ export default function WeekDaysContainer(props){
         }
 
         return daysTasks.map((task) => (
-            <li key={task.index}>{task.name}</li>
+            <li key={task.index} className={`${task.done ? styles.done : styles.notDone}`}>{task.name}</li>
         ));
     }
 

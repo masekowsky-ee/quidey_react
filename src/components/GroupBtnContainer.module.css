@@ -12,11 +12,20 @@
 }
 
 .groupBtn{
+    all: unset;
     width: 5rem;
     height: fit-content;
     min-height: 1.5rem;
     box-shadow: 0 2px 4px black;
     transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-weight: 600;
+    color: lightgray;
+    border: 1px solid lightgray;
+    padding: 0 0.5rem;
 }
 
 .groupBtn:hover{
@@ -65,4 +74,8 @@
 
 .groupBtnDivInner + .groupBtnDivInner{
     border-left: 1px solid rgb(151, 151, 151);
+}
+.activeGroup{
+    background-color: lightgray;
+    color: rgb(49,49,49);
 }
