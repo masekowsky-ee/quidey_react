@@ -1,14 +1,22 @@
 .groupBtnDiv{
     margin-top: 1rem;
     width: 100%;
-    padding: 1rem;
+    padding: 0;
     background-color: rgb(49, 49, 49);
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     border-top: 1px solid rgb(151, 151, 151);
     border-bottom: 1px solid rgb(151, 151, 151);
     overflow-x: scroll;
+}
+
+.inner{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: fit-content;
+    padding: 1rem;
 }
 
 .groupBtn{

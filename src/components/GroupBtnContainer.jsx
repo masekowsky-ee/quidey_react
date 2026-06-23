@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import styles from './GroupBtnContainer.module.css';
 
-export default function(props){
+export default function GroupBtnContainer(props){
     const { t, groups, setGroups, setGroupToDisplayName, groupToDisplayName } = props;
 
     const handleRemoveGroup = (groupName) => {
@@ -14,8 +14,8 @@ export default function(props){
     }
 
     return (
-        <div>
-            <div className={styles.groupBtnDiv}>
+        <div className={styles.groupBtnDiv}>
+            <div className={styles.inner}>
                 {groups.map(group => (
                     <div className={styles.groupBtnDivInner} key={group.name + 'Div'}>
                         <button className={`${styles.groupBtn} ${groupToDisplayName === group.name ? styles.activeGroup : ''}`} key={group.name + 'DisplayBtn'} onClick={() => handleDisplayGroups(group.name)}>
