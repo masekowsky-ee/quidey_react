@@ -10,6 +10,7 @@
     height: 350px;
     justify-self: center;
     margin-bottom: 1rem;
+    position: relative;
 }
 
 .taskLi{
@@ -37,6 +38,7 @@
     margin: 0 0.75rem;
     height: 320px;;
     padding: 15px 0;
+    transition: all 0.2s ease;
 }
 
 .startBtn{
@@ -76,6 +78,7 @@
     gap: 1rem;
     padding: 0 1rem;
     margin: 1rem 0;
+    position: relative;
 }
 .btnDiv{
     display: flex;
@@ -108,4 +111,23 @@
 .delete{
     border-radius: 8px;
     border: 2px solid grey;
+}
+.expandDone, .collapseDone {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 40px;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    border: 2px solid lightgray;
+    box-shadow: 0 2px 5px black;
+    margin: 5px;
+    transition: all 0.2s ease;
+}
+
+.expandDone:hover, .collapseDone:hover{
+    transform: translateY(-2px);
+}
+.expandDone:active, .collapseDone:active{
+    transform: translateY(2px);
 }

@@ -37,17 +37,20 @@
     padding: 0;
 }
 .sizeBtn{
-    all: unset;
     position: absolute;
     top: 0;
     right: 0;
-    height: 2.5rem;
-    border: 2px solid grey;
-    background-color: rgb(49,49,49);
-    border-radius: 5px;
-    width: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 40px;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    border: 2px solid lightgray;
+    box-shadow: 0 2px 5px black;
+    margin: 5px;
+    transition: all 0.2s ease;
 }
-
+.sizeBtn:hover{
+    transform: translateY(-20px);
+}
+.sizeBtn:active{
+    transform: translateY(2px);
+}
