@@ -44,6 +44,7 @@ const translations = {
         noTasksFound: 'Bisher keine Aufgaben',
         breaks: 'Pausen',
         dragATask: 'Ziehe eine Aufgabe hierher',
+        taskNotes: 'Aufgaben Notizen',
 
 
         groupError: 'Bitte gib einen gültigen, unbenutzten Gruppennamen ein',
@@ -94,6 +95,7 @@ const translations = {
         noTasksFound: 'No tasks so far',
         breaks: 'Breaks',
         dragATask: 'Drag a task here',
+        taskNotes: 'Task notes',
 
 
         groupError: 'Please enter a valid, unused group name',

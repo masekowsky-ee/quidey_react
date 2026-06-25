@@ -80,14 +80,15 @@
     width: 100%;
 }
 .currentTaskDiv{
-    min-width: 50rem;
-    min-height: 30rem;
+    min-width: 350px;
+    min-height: 6rem;
     background-color: rgb(49, 49, 49);
     border-radius: 2rem;
     border: 2px solid rgb(49, 49, 49);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2rem 0;
 }
 .li{
     display: flex;
@@ -101,9 +102,8 @@
 }
 .ul{
     list-style: none;
-    padding: 0;
+    padding: 1rem 0;
     background-color: rgb(49, 49, 49);
-    padding: 1rem;
     border-radius: 1.5rem;
     width: fit-content;
     min-width: 350px;
@@ -124,4 +124,11 @@
     color: lightgray;
     height: 2rem;
     width:auto;
+}
+.notesDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
