@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styles from './WorkingPage.module.css'
 import { useNavigate } from "react-router-dom";
 import TimerContainer from "./TimerContainer.jsx";
-import TaskContainer from "./taskContainer.jsx";
 
 export default function WorkingPage(props){
     const { t, setTasks, tasks, groups, setGroups, setSessionParams, setCustomError, showDone, setShowDone, sessionParams } = props;
