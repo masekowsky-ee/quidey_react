@@ -1,4 +1,4 @@
-import React, { useState, useTransition } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import {useTranslation} from './i18n/LanguageContext'
 import mockData from './components/mockData'
@@ -14,26 +14,79 @@ import CustomError from './components/CustomError.jsx';
 function App(){
   const { t, language, setLanguage } = useTranslation();
 
-  const [groups, setGroups] = useState(mockData.groups);
+  const [groups, setGroups] = useState(() => {
+    try {
+      const stored = localStorage.getItem("groups");
+      return stored ? JSON.parse(stored) : mockData.groups;
+    } catch {
+      return mockData.groups;
+    }
+  });
 
-  let startCounter = mockData.taskIndexCouter;
-  const [taskIndexCounter, setTaskIndexCounter] = useState(startCounter);
+  const [taskIndexCounter, setTaskIndexCounter] = useState(() => {
+    try {
+      const stored = localStorage.getItem("taskIndexCounter");
+      return stored !== null ? JSON.parse(stored) : mockData.taskIndexCounter;
+    } catch {
+      return mockData.taskIndexCounter;
+    }
+  });
 
-  const [tasks, setTasks] = useState(mockData.tasks);
+  const [tasks, setTasks] = useState(() => {
+    try {
+      const stored = localStorage.getItem("tasks");
+      return stored ? JSON.parse(stored) : mockData.tasks;
+    } catch {
+      return mockData.tasks;
+    }
+  });
 
   const [showMenu, setShowMenu] = useState(false);
 
-  const [ signedIn, setSignedIn ] = useState(false);
+  const [signedIn, setSignedIn] = useState(() => {
+    try {
+      const stored = localStorage.getItem("signedIn");
+      return stored !== null ? JSON.parse(stored) : false;
+    } catch {
+      return false;
+    }
+  });
 
-  const [ user, setUser ] = useState(null);
+  const [user, setUser] = useState(() => {
+    try {
+      const stored = localStorage.getItem("user");
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  });
 
   const [users, setUsers] = useState(mockData.users);
 
-  const [sessionParams, setSessionParams] = useState({group: null, time: null, breaks: null});
+  const [sessionParams, setSessionParams] = useState({ group: null, time: null, breaks: null });
 
-  const [customError, setCustomError] = useState({bool: false, message: ''});
+  const [customError, setCustomError] = useState({ bool: false, message: '' });
 
   const [showDone, setShowDone] = useState(true);
+
+  useEffect(()=>{
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  },[tasks]);
+  useEffect(()=>{
+    localStorage.setItem("taskIndexCounter", taskIndexCounter);
+  },[taskIndexCounter]);
+  useEffect(()=>{
+    localStorage.setItem("groups", JSON.stringify(groups));
+  },[groups]);
+  useEffect(()=>{
+    localStorage.setItem("signedIn", JSON.stringify(signedIn));
+    if(!signedIn){
+      localStorage.removeItem('user');
+    }
+  },[signedIn]);
+  useEffect(()=>{
+    localStorage.setItem("user", JSON.stringify(user));
+  },[user]);
 
   console.log(tasks);
   return (
