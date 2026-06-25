@@ -80,11 +80,14 @@
     width: 100%;
 }
 .currentTaskDiv{
-    min-width: 20rem;
-    min-height: 8rem;
+    min-width: 50rem;
+    min-height: 30rem;
     background-color: rgb(49, 49, 49);
     border-radius: 2rem;
     border: 2px solid rgb(49, 49, 49);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .li{
     display: flex;
@@ -92,11 +95,9 @@
     align-items: center;
     justify-content: space-between;
     padding-bottom: 1rem;
-    min-width: 180px;
-}
-.li + .li{
-    border-top: 2px solid lightgray;
-    padding-top: 1rem;
+    width: fit-content;
+    margin: 0.5rem 0;
+    border-radius: 2rem;
 }
 .ul{
     list-style: none;
@@ -106,6 +107,12 @@
     border-radius: 1.5rem;
     width: fit-content;
     min-width: 350px;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .pDiv{
     display: flex;
@@ -117,9 +124,4 @@
     color: lightgray;
     height: 2rem;
     width:auto;
-}
-.currentTaskDiv{
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
