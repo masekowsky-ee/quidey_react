@@ -27,7 +27,8 @@ function App(){
   const [taskIndexCounter, setTaskIndexCounter] = useState(() => {
     try {
       const stored = localStorage.getItem("taskIndexCounter");
-      return stored !== null ? JSON.parse(stored) : mockData.taskIndexCounter;
+      const parsed = stored !== null ? JSON.parse(stored) : null;
+      return typeof parsed === "number" ? parsed : mockData.taskIndexCounter;
     } catch {
       return mockData.taskIndexCounter;
     }

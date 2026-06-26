@@ -69,3 +69,7 @@
     justify-content: space-around;
 }
 
+.prioDiv{
+    display: flex;
+    flex-direction: row;
+}

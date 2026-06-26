@@ -8,13 +8,30 @@ export default function WorkingPage(props){
 
     const navigate = useNavigate();
 
-    const [group, setGroup] = useState(null);   
+    const [group, setGroup] = useState(groups.find(g => g.name === sessionParams.group) || groups.find(g => g.name === 'all'));   
     const [working, setWorking] = useState(true);
     const [editNote, setEditNote] = useState(false);
+    const [tasksToWork, setTasksToWork] = useState([]);
+
+    const sortByPrio = (array) => {
+        const arrayToSort = [...array];
+        return arrayToSort.sort((a,b)=>{
+            return b.prio - a.prio;
+        });
+    }
+
+    useEffect(() => {
+        if (!group) return;
+        const taskArray = group.tasks
+            .map(task=>tasks.find(t => t.index === task))
+            .filter(Boolean);
+        const sortedArray = sortByPrio(taskArray)
+        setTasksToWork(sortedArray);
+        if(!activeTask) setActiveTask(sortedArray[0]);
+    }, []);
 
     // Current State:
-    const firstTask = tasks.find(t=>t.prioritise === true) || tasks[0] || null;
-    const [activeTask, setActiveTask] = useState(firstTask);
+    const [activeTask, setActiveTask] = useState(null);
 
     const [timer, setTimer] = useState({time: sessionParams.time, active: false});
 
@@ -192,7 +209,7 @@ export default function WorkingPage(props){
         setActiveTask(updatedTask);
     }
 
-    if (!group) return null;
+    if (!tasksToWork) return null;
     return(
         <div className={styles.div}>
             <h2 className={styles.h2}>{t('currentGroup')}: {sessionParams.group === 'all' ? t('all') : sessionParams.group}</h2>
@@ -216,8 +233,7 @@ export default function WorkingPage(props){
                 </div> : <p>{t('dragATask')}</p>}
             </div>
             <ul className={styles.ul}>
-                {group.tasks.map((taskIndex) => {
-                    const task = tasks.find((t) => t.index === taskIndex);
+                {tasksToWork.map(task => {
                     if (task.done || task.index === activeTask?.index) { return null; }
 
                     // Check if this specific task is the one currently being dragged
