@@ -2,13 +2,12 @@ import React, {useState, useEffect, useRef} from 'react'
 import styles from './TimerContainer.module.css'
 
 export default function TimerContainer(props){
-    const { sessionParams, setSessionParams } = props;
+    const { sessionParams, setSessionParams, timer, setTimer } = props;
     
     let mins;
     let hours;
     let secs;
 
-    const [timer, setTimer] = useState({time: sessionParams.time, active: false});
     console.log(timer);
 
     const [timeToDisplay, setTimeToDisplay] = useState();

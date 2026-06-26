@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import TimerContainer from "./TimerContainer.jsx";
 
 export default function WorkingPage(props){
-    const { t, setTasks, tasks, groups, setGroups, setSessionParams, setCustomError, showDone, setShowDone, sessionParams } = props;
+    const { t, setTasks, tasks, groups, setGroups, setSessionParams, setCustomError, showDone, setShowDone, sessionParams, setWorkedSessions } = props;
 
     const navigate = useNavigate();
 
@@ -12,10 +12,59 @@ export default function WorkingPage(props){
     const [working, setWorking] = useState(true);
     const [editNote, setEditNote] = useState(false);
 
-
     // Current State:
     const firstTask = tasks.find(t=>t.prioritise === true) || tasks[0] || null;
     const [activeTask, setActiveTask] = useState(firstTask);
+
+    const [timer, setTimer] = useState({time: sessionParams.time, active: false});
+
+    //keep track of session 
+    const [sessionData, setSessionData] = useState(() => ({
+        time: 0,
+        workedTasks: [],
+        date: new Date()
+    }));
+    const resetSession = () => {
+        setSessionData({ time: 0, workedTasks: [], date: new Date() });
+    };
+
+    //add new task to session data
+    useEffect(()=>{
+        if (!activeTask) return;
+        if (sessionData.workedTasks.length === 0){
+            setSessionData( (prev)=>
+                ({...prev, 
+                    workedTasks: [{name: activeTask.name, index: activeTask.index, time: 0}]
+                })
+            );
+        }
+        if (!sessionData.workedTasks.find(t => t.index === activeTask.index) && sessionData.workedTasks.length > 0) {
+            setSessionData( (prev)=>
+                ({...prev, 
+                    workedTasks: [...prev.workedTasks, {name: activeTask.name, index: activeTask.index, time: 0}]
+                })
+            );
+        }
+    }, [activeTask]);
+
+    //add time to tasks and session data
+    useEffect(()=>{
+        if (!timer.active) return;
+        setSessionData((prev) => {
+            const taskToUpdate = prev.workedTasks.find(t => t.index === activeTask.index);
+            //only update time if no task to update
+            if (!taskToUpdate) return {...prev, time: prev.time + 1};
+            //otherwise update task and overall
+            return {
+                ...prev,
+                time: prev.time + 1, 
+                workedTasks: prev.workedTasks.map((t) => 
+                    t.index === activeTask.index ? { ...t, time: t.time + 1 } : t
+                )
+            };
+        });
+        console.log(sessionData);
+    }, [timer.time]);
 
     // New state for drag logic:
     const [draggedTask, setDraggedTask] = useState(null); // currently dragged task
@@ -94,6 +143,9 @@ export default function WorkingPage(props){
     }
 
     const handleSessionDone = () => {
+        const currentSession = sessionData;
+        setWorkedSessions((prev) => ([ ...prev, currentSession ]));
+        resetSession();
         navigate('/');
     }
 
@@ -142,7 +194,7 @@ export default function WorkingPage(props){
     return(
         <div className={styles.div}>
             <h2 className={styles.h2}>{t('currentGroup')}: {sessionParams.group === 'all' ? t('all') : sessionParams.group}</h2>
-            <TimerContainer setSessionParams={setSessionParams} sessionParams={sessionParams} />
+            <TimerContainer setSessionParams={setSessionParams} sessionParams={sessionParams} timer={timer} setTimer={setTimer} />
             <div ref={dropZoneRef} className={styles.currentTaskDiv}>
                 {activeTask ? <div>
                     <h2>{activeTask.name}</h2>

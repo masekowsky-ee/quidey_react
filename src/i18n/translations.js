@@ -45,8 +45,11 @@ const translations = {
         breaks: 'Pausen',
         dragATask: 'Ziehe eine Aufgabe hierher',
         taskNotes: 'Aufgaben Notizen',
+        history: 'Verlauf',
+        total: 'Gesamt',
+        noSessionsYet: 'Bisher noch nichts verzeichnet...',
 
-
+        dateNameTaskError: 'Bitte gib ein gültiges Datum / einen gültigen Namen ein',
         groupError: 'Bitte gib einen gültigen, unbenutzten Gruppennamen ein',
         sessionTimeError: 'Bitte gib eine gültige Zeit ein (00:15 - 03:45)',
     },
@@ -96,8 +99,11 @@ const translations = {
         breaks: 'Breaks',
         dragATask: 'Drag a task here',
         taskNotes: 'Task notes',
+        history: 'History',
+        total: 'Total',
+        noSessionsYet: 'Nothing logged yet...',
 
-
+    dateNameTaskError: 'Please enter a valid Date / Name',
         groupError: 'Please enter a valid, unused group name',
         sessionTimeError: 'Please enter a valid time (00:15 - 03:45)',
     }

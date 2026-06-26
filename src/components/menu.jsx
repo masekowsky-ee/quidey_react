@@ -16,6 +16,9 @@ export default function Menu(props){
                 <Link to="/profile" className={styles.menuItem} onClick={onClose}>
                     {t('profile')}
                 </Link>
+                <Link to="/history" className={styles.menuItem} onClick={onClose}>
+                    {t('history')}
+                </Link>
                 <Link to="/settings" className={styles.menuItem} onClick={onClose}>
                     {t('settings')}
                 </Link>

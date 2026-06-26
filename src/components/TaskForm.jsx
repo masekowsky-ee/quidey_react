@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './TaskForm.module.css';
 
 export default function TaskForm(props){
-    const {t, setTasks, setGroups, taskIndexCounter, setTaskIndexCounter, showForms} = props;
+    const {t, setCustomError, setTasks, setGroups, taskIndexCounter, setTaskIndexCounter, showForms} = props;
 
     function handleSubmit(e){
         e.preventDefault();
@@ -16,7 +16,7 @@ export default function TaskForm(props){
 
             setTasks((prev) => [
                 ...prev,
-                { index: index, name: name, due: due, description: description, groups: ['all'], prioritise: prioritise }
+                { index: index, name: name, due: due, description: description, groups: ['all'], prioritise: prioritise, notes: [] }
             ]);
 
             setGroups((prev) => prev.map(p => {
@@ -30,6 +30,8 @@ export default function TaskForm(props){
             e.target[0].value = '';
             e.target[1].value = '';
             e.target[2].value = '';
+        } else {
+            setCustomError({bool: true, message: t('dateNameTaskError')})
         }
     }
 
