@@ -24,7 +24,7 @@ const StartSettingsContainer = (props) => {
     return (
         <form className={styles.form} onSubmit={(e)=>{handleStartSession(e)}}>
             <label htmlFor="groupInput">{t('group')}: </label>
-            <select className={styles.space} name="groups" id='groups'>
+            <select className={`${styles.space} ${styles.groupSelect}`} name="groups" id='groups'>
                 <option key={'all'} value={'all'}>{t('all')}</option>
                 {groups.map((group) =>{ 
                     if(group.name !== 'all'){
@@ -55,7 +55,7 @@ const StartSettingsContainer = (props) => {
                 <label htmlFor="breaks">{t('breaks')}</label>
                 <input type="checkbox" id="breaks" name="breaks" />
             </div>
-            <button className={styles.space} type="submit">{t('start')}</button>
+            <button className={`${styles.space} ${styles.startBtn}`} type="submit">{t('start')}</button>
         </form>
     );
 }

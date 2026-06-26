@@ -144,7 +144,9 @@ export default function WorkingPage(props){
 
     const handleSessionDone = () => {
         const currentSession = sessionData;
-        setWorkedSessions((prev) => ([ ...prev, currentSession ]));
+        if (currentSession.time > 0){
+            setWorkedSessions((prev) => ([ ...prev, currentSession ]));
+        }
         resetSession();
         navigate('/');
     }

@@ -148,7 +148,7 @@ export default function TaskContainer(props){
                                     ? <input autoFocus type="text" defaultValue={task.description} onBlur={(e) => {setTaskPropHandler(e.target.value);}} />
                                     : <p onClick={(e) => changePropHandler(e, task.index, 'description')}>{task.description}</p>
                                 ) : (
-                                    <input type="text" placeholder={t('description') + '...'} onClick={(e)=>changePropHandler(e, task.index, 'description')} onBlur={(e) => { setTaskPropHandler(e.target.value);}} />
+                                    <input type="text" placeholder={t('description') + '...'} onClick={(e)=>changePropHandler(e, task.index, 'description')} onBlur={(e) => { setTaskPropHandler(e.target.value);}} onKeyDown={(e) => {if(e.key === 'Enter'){setTaskPropHandler(e.target.value)}}} />
                                 )}
                                 <div className={styles.btnDiv}>
                                     <button className={styles.btn} onClick={() => handleAssignGroup(task)}>{t('assignGroup')}</button>
