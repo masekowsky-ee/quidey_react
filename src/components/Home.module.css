@@ -49,8 +49,11 @@
     transition: all 0.2s ease;
 }
 .sizeBtn:hover{
-    transform: translateY(-20px);
+    transform: translateY(-2px);
 }
 .sizeBtn:active{
     transform: translateY(2px);
+}
+.tcc{
+    position: relative;
 }

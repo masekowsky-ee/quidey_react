@@ -9,7 +9,7 @@ export default function History(props){
         <div className={styles.div}>
             <h2 className={styles.h2}>{t('history')}</h2>
             <div>
-                {workedSessions ?
+                {workedSessions[0] ?
                     workedSessions.map((ws)  => {
                         return (
                             <div>

@@ -22,8 +22,19 @@
 
 .doneLi{
     width: fit-content;
+    display: flex;
+    flex-direction: row;
     justify-self: center;
-    align-self: center;
+    align-self: flex-start;
+    min-width: 200px;
+    justify-content: space-between;
+}
+
+.doneHeadDiv{
+    display: flex;
+    flex-direction: row;
+    min-width: 115px;
+    justify-content: space-between;
 }
 
 .taskLi input {
@@ -44,11 +55,9 @@
 .ul{
     list-style-type: none;
     padding: 0;
-    margin: 1rem 0;
-    margin: 0 0.75rem;
+    margin: 1rem 0.75rem;
     height: 320px;;
     padding: 15px 0;
-    padding-right: 3rem;
     transition: all 0.2s ease;
     display: flex;
     align-items: stretch;
