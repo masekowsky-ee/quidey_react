@@ -1,19 +1,20 @@
 .weekTable{
     width: 100%;
     height: fit-content;
-    background-color: rgb(49, 49, 49);
+    background-color: transparent;
     gap: 0;
     display: flex;
     flex-direction: row;
 }
 
 .weekDayDiv{
-    width: 12.5%;
+    width: 11.1%;
     min-height: 100px;
     max-height: 200px;
     padding: 0.5rem 0;
     border-bottom: 1px solid rgb(143, 142, 142);
     min-width: 100px;
+    background-color: rgba(49,49,49,1);
 }
 
 .weekDayDiv + .weekDayDiv {
@@ -32,6 +33,38 @@
 .done{
     text-decoration: line-through;
     color: gray;
+}
+
+.dateIconDiv{
+    width: 11.1%;
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right ,rgba(49,49,49,1) 10%,rgba(0,0,0,0) 100%);
+    border-bottom: 1px solid rgb(143, 142, 142);
+    border-left: 1px solid rgb(143, 142, 142);
+}
+
+.svg{
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgb(143, 142, 142);
+    background-color: rgba(49,49,49,1);
+    box-shadow: 0 5px 8px black;
+    padding: 10px;
+    border-radius: 27.5px;
+    transition: all 0.2s ease;
+}
+
+.svg:hover{
+    transform: translateY(-2px);
+    transform: scale(1.1);
+}
+
+.svg:active{
+    transform: translateY(3px);
+    transform: scale(0.9);
 }
 
 @media screen and (max-width: 800px) {
